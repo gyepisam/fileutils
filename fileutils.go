@@ -28,7 +28,7 @@ func fileTest(name string, f func(os.FileInfo) bool) (bool, error) {
 // A non-existent file returns false.
 func IsFile(name string) (bool, error) {
 	return fileTest(name, func(info os.FileInfo) bool {
-		return info.Mode().IsRegular()
+		return info.Mode()&os.ModeType == 0
 	})
 }
 
